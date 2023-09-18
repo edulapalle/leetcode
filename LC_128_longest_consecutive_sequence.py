@@ -23,29 +23,26 @@ Constraints:
 -109 <= nums[i] <= 109
 """
 
+
 class Solution:
     def longestConsecutive(self, nums):
-
-        counter = 0
-        dict1 = {}
-        #load the dictionary
-        for i in nums:
-            if i not in dict1:
-                dict1[i] = 0
-        #for loop of nums:
-        i = 0
-        while i < len(nums):
-            check = nums[i] + 1
-            if (check in dict1) and (dict1.get(i,0) == 0):
-                counter += 1
-                dict1[i] = dict1.get(i,0) + 1
-            i += 1
-        return counter
+        # create a set to take only unique values
+        numSet = set(nums)
+        longest = 0  # sequence counter
+        for n in numSet:
+            # we will start the sequence only if that value does not have a before value
+            if (n - 1) not in numSet:
+                current_length = 0
+                # check if current value (n) + currnet_length in numSet eg ( 3+2 = 5 should be in numset)
+                while n + current_length in numSet:
+                    current_length += 1
+                    longest = max(longest, current_length)
+        return longest
 
 
 def main():
     sol = Solution()
-    nums = [0,3,7,2,5,8,4,6,0,1]
+    nums = [100,4,200,1,3,2]
     result = sol.longestConsecutive(nums)
     print(result)
 
