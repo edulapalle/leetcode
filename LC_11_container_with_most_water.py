@@ -32,6 +32,8 @@ n == height.length
 """
 
 # Brute force O(n^2)
+#solution O(n)
+#solution memory O(1)
 class Solution:
     def maxArea(self, height):
         max_area = 0 # we initialise with 0 because here, area cannot be negative in given case.
