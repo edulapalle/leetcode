@@ -31,9 +31,9 @@ Constraints:
 class Solution:
     def rob(self,nums):
         #start with base houses
-        currentHouse, futureHouse = 0,0
+        currentHouse, adjacentHouse = 0,0 # max ammount we can rob from previous two houses.
         for n in nums:
-            temp = max(currentHouse + n, futureHouse) # you can either select base house 1 + current N or you can select future base
-            currentHouse = futureHouse
-            futureHouse = temp
-        return futureHouse
+            temp = max(currentHouse + n, adjacentHouse) # we are taking max value until n.
+            currentHouse = adjacentHouse # now we are shifting array by 1, so we update the rob values
+            adjacentHouse = temp
+        return adjacentHouse
